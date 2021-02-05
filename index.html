@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="lib/skeuos.min.css">
+  <link rel="stylesheet" href="css/index.css">
+  <title>WASM Image Operations</title>
+</head>
+<body>
+  <main class="paper">
+    <h2>WASM Image Editor</h2>
+    <section class="file-selection">
+      <form>
+        <label for="file-selection">
+          <button class="file-selection-button" aria-controls="file-selection">Select image</button>
+          <span class="filename">No image selected</span>
+        </label>
+        <input id="file-selection" type="file" accept=".jpg,.jpeg,.png" />
+      </form>
+    </section>
+    <section class="image-preview paper">
+      <h3>The image you upload will be shown here...</h3>
+      <img id="working-image" width="70%" height="70%" src="none" alt="No image selected" />
+    </section>
+  </main>
+  <script src="js/index.js"></script>
+</body>
+</html>
