@@ -1,3 +1,11 @@
+// CONSTANTS.
+
+const Constants = {
+  TAB: 9,
+  ARROW_LEFT: 37,
+  ARROW_RIGHT: 39,
+};
+
 // Copied shamelessly from https://animate.style/#documentation
 const animate = async (node, animation, prefix = 'animate__') => {
   return new Promise((resolve, reject) => {
@@ -14,10 +22,46 @@ const animate = async (node, animation, prefix = 'animate__') => {
 
 function init() {
   initFileuploader();
-  initEventHandlers();
+  initChangeImageButton();
+  initToolbar();
 }
 
-function initEventHandlers() {
+function initToolbar() {
+  // TODO: Arrow keys.
+  const toolbarCtr = document.querySelector('.image-meta');
+  const toolbarButtons = toolbarCtr.querySelectorAll('.icon-button');
+  toolbarCtr.addEventListener('keydown', function(event) {
+    if (event.target.classList.contains('icon-button')) {
+      let currIndex = parseInt(event.target.getAttribute('data-index'));
+      let nextIndex = 0;
+      if ((event.keyCode || event.which) === Constants.ARROW_LEFT) {
+        
+      } else if ((event.keyCode || event.which) === Constants.ARROW_RIGHT) {
+
+      }
+    }
+  });
+  const first = document.querySelector('#image-edit-button');
+  const last = document.querySelector('#undo');
+  // keypresses
+  first.addEventListener('keydown', e => {
+    const key = e.keyCode || e.which; // yeah, it's 2021 and we still need to do this shit.
+    if (e.shiftKey && key === Constants.TAB) {
+      e.preventDefault();
+      console.log('roving focus detector: Shift Tab on first. focusing last.');
+      last.focus();
+    }
+  });
+  last.addEventListener('keydown', e => {
+    const key = e.keyCode || e.which; // yeah, it's 2021 and we still need to do this shit.
+    if (key === Constants.TAB) {
+      e.preventDefault();
+      first.focus();
+    };
+  });
+}
+
+function initChangeImageButton() {
   document.querySelector('#image-edit-button').addEventListener('click', e => {
     document.querySelector('#file-selection').click();
   });
